@@ -3,14 +3,14 @@ const app = express()
 const cors = require("cors");
 var logger = require("morgan");
 const errorHandler = require("./utils/errorHandler");
-const mongoose = require("mongoose");
-// require("dotenv").config();
+// const mongoose = require("mongoose");
+require("dotenv").config();
 
 const tokenRoutes = require('./routes/tokenRoutes');
 const quoteRoutes = require('./routes/quoteRoutes');
 const paramRoutes = require('./routes/paramRoutes');
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 // const CONNECTION_URL = process.env.CONNECTION_URL;
 
 
