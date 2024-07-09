@@ -3,6 +3,6 @@ const { getQuote } = require('../controllers/quoteController');
 
 const router = express.Router();
 
-router.get('/', getQuote);
+router.post('/', getQuote);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const getQuote = (req, res) => {
         method: 'GET',
         hostname: 'binance43.p.rapidapi.com',
         port: null,
-        path: `/exchangeInfo?symbol="LTCBTC"`,
+        path: `/exchangeInfo?symbol=${symbol}`,
         headers: {
             'x-rapidapi-key': '88f5ff911amsh82df9cdf589359bp1a1113jsn0f0654fd9598',
             'x-rapidapi-host': 'binance43.p.rapidapi.com'
