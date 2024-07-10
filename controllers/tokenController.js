@@ -1,12 +1,8 @@
-const http = require('http');
-const asyncMiddleware = require('./asyncMiddleware'); // Adjust the path as necessary
+const http = require('https');
+const asyncMiddleware = require('../utils/asyncMiddleware');
+require("dotenv").config();
 
 const getTokens = asyncMiddleware(async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-
     const options = {
         method: 'GET',
         hostname: process.env.RapidApiHost,
@@ -27,20 +23,7 @@ const getTokens = asyncMiddleware(async (req, res) => {
 
         apiRes.on('end', function () {
             const body = Buffer.concat(chunks);
-            const tokens = JSON.parse(body.toString());
-
-            // Implement pagination logic
-            const paginatedTokens = tokens.slice(startIndex, endIndex);
-            const totalTokens = tokens.length;
-            const totalPages = Math.ceil(totalTokens / limit);
-
-            res.status(200).json({
-                page,
-                limit,
-                totalTokens,
-                totalPages,
-                tokens: paginatedTokens
-            });
+            res.status(200).json(JSON.parse(body.toString()));
         });
     });
 
@@ -49,6 +32,6 @@ const getTokens = asyncMiddleware(async (req, res) => {
     });
 
     apiReq.end();
-});
+})
 
-module.exports = getTokens;
+module.exports = { getTokens };

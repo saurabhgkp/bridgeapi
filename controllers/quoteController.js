@@ -2,7 +2,7 @@ const http = require('https');
 require("dotenv").config();
 const asyncMiddleware = require('../utils/asyncMiddleware');
 const getQuote = asyncMiddleware(async (req, res) => {
-    const { symbol } = req.body;
+    const { symbol } = req.params
 
     const options = {
         method: 'GET',
