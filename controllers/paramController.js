@@ -1,6 +1,9 @@
 const http = require('https');
 require("dotenv").config();
-const getParams = (req, res) => {
+const asyncMiddleware = require('../utils/asyncMiddleware');
+
+const getParams = asyncMiddleware(async (req, res) => {
+
     const { symbol } = req.body;
 
     const options = {
@@ -32,6 +35,6 @@ const getParams = (req, res) => {
     });
 
     apiReq.end();
-};
 
+})
 module.exports = { getParams };

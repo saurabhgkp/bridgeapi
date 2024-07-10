@@ -1,7 +1,8 @@
 const http = require('https');
+const asyncMiddleware = require('../utils/asyncMiddleware');
 require("dotenv").config();
-const getTokens = (req, res) => {
 
+const getTokens = asyncMiddleware(async (req, res) => {
     const options = {
         method: 'GET',
         hostname: process.env.RapidApiHost,
@@ -31,6 +32,6 @@ const getTokens = (req, res) => {
     });
 
     apiReq.end();
-};
+})
 
 module.exports = { getTokens };

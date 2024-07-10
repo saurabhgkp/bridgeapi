@@ -31,10 +31,8 @@ app.use('/params', paramRoutes);
 // Global error handler
 app.use(errorHandler);
 
+module.exports = app;
 
-app.listen(PORT, () =>
-    console.log(`Server Running on Port: http://localhost:${PORT}`)
-)
 // mongoose
 //     .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 //     .then(() =>
